@@ -28,7 +28,7 @@ jobs:
       - name: Запустить тесты Playwright
         run: |
           mkdir -p allure-results
-          pytest tests/ --alluredir=allure-results/
+          pytest tests/test_ultimateqa_ui_po.py tests/test_ultimateqa_ui.py --alluredir=allure-results --env=qa
 
       - name: Установить Allure
         uses: actions/setup-java@v3
@@ -49,16 +49,19 @@ jobs:
           name: Allure Report
           path: allure-report
 
-      - name: Скопировать проект в VeraPoArt/playwright_course
+      - name: Скопировать проект в VeraPoArt/my_project_variable
         if: ${{ github.event_name == 'push' }}  # Действие только при пуше в main (можно менять логику)
         run: |
           # Настраиваем git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Добавляем удалённый репозиторий VeraPoArt/playwright_course
-          git remote add second "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/VeraPoArt/playwright_course.git"
+          # Проверка состояния репозитория
+          git status
+          git log --oneline
+
+          # Добавляем удалённый репозиторий VeraPoArt/my_project_variable
+          git remote add second "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/VeraPoArt/my_project_variable.git"
 
           # Пушим текущую ветку (main) в репозиторий second, в ветку main
-          # Если нужно перезаписывать историю, можно добавить --force
-          git push second HEAD:main
+          git push second HEAD:main --force
