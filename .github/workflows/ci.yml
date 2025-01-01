@@ -25,16 +25,17 @@ jobs:
           pip install -r requirements.txt
           playwright install
 
-      - name: Запустить тесты Playwright
-        run: |
-          mkdir -p allure-results
-          pytest tests/test_ultimateqa_ui_po.py tests/test_ultimateqa_ui.py --alluredir=allure-results --env=qa
-
       - name: Установить Allure
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
+
+      - name: Запустить тесты Playwright
+        run: |
+          mkdir -p allure-results
+          pytest tests/test_ultimateqa_ui_po.py tests/test_ultimateqa_ui.py --alluredir=allure-results --env=qa
+
 
       - name: Генерация отчета Allure
         run: |
@@ -55,4 +56,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-          publish_branch: gh-pages
+          publish_branch: main
