@@ -45,15 +45,15 @@ jobs:
           allure generate allure-results --clean -o allure-report
 
           
-      - name: Публиковать отчет Allure
-        uses: actions/upload-artifact@v3
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
         with:
           name: Allure Report
-          path: allure-report
+          path: ./allure-report
 
       - name: Развертывание отчета Allure на GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-          publish_branch: main
+          publish_branch: gh-pages
