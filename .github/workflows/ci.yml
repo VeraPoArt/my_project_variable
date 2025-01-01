@@ -48,20 +48,3 @@ jobs:
         with:
           name: Allure Report
           path: allure-report
-
-      - name: Скопировать проект в VeraPoArt/my_project_variable
-        if: ${{ github.event_name == 'push' }}  # Действие только при пуше в main (можно менять логику)
-        run: |
-          # Настраиваем git
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-          # Проверка состояния репозитория
-          git status
-          git log --oneline
-
-          # Добавляем удалённый репозиторий VeraPoArt/my_project_variable
-          git remote add second "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/VeraPoArt/my_project_variable.git"
-
-          # Пушим текущую ветку (main) в репозиторий second, в ветку main
-          git push second HEAD:main --force
