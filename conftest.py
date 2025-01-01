@@ -32,7 +32,7 @@ def playwright_instance():
 @pytest.fixture(scope="session")
 def browser(playwright_instance):
     browser = playwright_instance.chromium.launch(
-        headless=False,
+        headless=True,
         slow_mo=1000,
         args=['--window-size=1920,1080']
     )
