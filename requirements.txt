@@ -1,0 +1,13 @@
+# Основные зависимости
+playwright~=1.49.0
+pytest~=8.3.3
+pytest-asyncio==0.24.0
+pytest-playwright==0.6.2
+pytest-base-url==2.1.0
+allure-pytest
+
+# Дополнительные утилиты
+python-dotenv==1.0.1  # для работы с .env файлами
+pytest-xdist==3.5.0   # для параллельного запуска тестов
+pytest-html==4.1.1    # для генерации HTML отчетов
+pytest-rerunfailures==13.0  # для повторного запуска упавших тестов
