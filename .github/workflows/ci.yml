@@ -42,9 +42,8 @@ jobs:
           unzip allure.zip -d /opt/
           export PATH=$PATH:/opt/allure-2.19.0/bin
           allure generate allure-results --clean -o allure-report
-          allure serve allure-results 
-          
 
+          
       - name: Публиковать отчет Allure
         uses: actions/upload-artifact@v3
         with:
