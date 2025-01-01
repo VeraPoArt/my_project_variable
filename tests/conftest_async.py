@@ -21,7 +21,7 @@ async def async_playwright_instance():
 @pytest.fixture(scope="function")
 async def async_browser(async_playwright_instance):
     browser = await async_playwright_instance.chromium.launch(
-        headless=True,  # Показываем браузер
+        headless=False,  # Показываем браузер
         slow_mo=500      # Замедляем действия для наглядности
     )
     yield browser
